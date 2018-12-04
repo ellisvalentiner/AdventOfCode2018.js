@@ -1,34 +1,29 @@
 var fs = require('fs');
 
 puzzle1 = function() {
-    var instructions = fs.readFileSync('data/1.txt').toString().split('\n').map(Number);
-    instructions.splice(-1, 1);
-    var cumulative_sum = [];
-    instructions.reduce(function(a,b,i) {
-        return cumulative_sum[i] = a+b;
-    }, 0);
-    var partone = cumulative_sum[cumulative_sum.length-1];
 
-    var frequency = 0;
-    var seen = [frequency];
+    const instructions = fs.readFileSync('data/1.txt', 'utf8').split('\n').map(Number);
+    const partOne = instructions.reduce((acc, x) => acc + x, 0);
+    instructions.splice(-1, 1);
+
+    var partTwo = 0;
+    var seen = new Set();
     var notfound = true;
 
     while (notfound) {
         for (const delta of instructions) {
-            frequency += delta;
-            if (seen[frequency]) {
-                var parttwo = frequency;
+            seen.add(partTwo);
+            partTwo += delta;
+            if (seen.has(partTwo)) {
                 notfound = false;
                 break;
-            } else {
-                seen.push(frequency);
             }
         }
     }
 
     return {
-        "Part One": partone,
-        "Part Two": parttwo
+        "Part One": partOne,
+        "Part Two": partTwo
     };
 };
 

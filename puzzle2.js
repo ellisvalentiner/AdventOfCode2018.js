@@ -57,4 +57,5 @@ puzzle2 = function() {
         "Part Two": partTwo
     }
 };
+
 console.log(puzzle2());
