@@ -1,10 +1,10 @@
 const fs = require('fs');
 
 puzzle2 = function() {
-    let instructions = fs.readFileSync('data/2.txt').toString().split('\n');
-    instructions.splice(-1, 1);
+    const instructions = fs.readFileSync('data/2.txt').toString().split('\n').splice(-1, 1);
     let has2 = 0;
     let has3 = 0;
+
     // Part One
     for (let i = 0; i < instructions.length; i++) {
         let line = instructions[i];
